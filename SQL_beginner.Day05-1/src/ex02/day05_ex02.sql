@@ -1,9 +1,6 @@
 CREATE INDEX idx_person_name ON person(UPPER(name));
-SET ENABLE_SEQSCAN = OFF;
+SET Enable_seqscan = OFF;
 EXPLAIN ANALYZE
-SELECT *
-FROM person
-WHERE UPPER(name) = 'KATE';
-SELECT *
-FROM person
+SELECT name
+FROM person p
 WHERE UPPER(name) = 'KATE';

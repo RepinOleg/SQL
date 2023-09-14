@@ -1,10 +1,6 @@
-SET ENABLE_SEQSCAN = OFF;
+SET Enable_seqscan = OFF;
 EXPLAIN ANALYZE
-SELECT menu.pizza_name,
-    pizzeria.name AS pizzeria_name
-FROM menu
-    JOIN pizzeria ON menu.pizzeria_id = pizzeria.id;
-SELECT menu.pizza_name,
-    pizzeria.name AS pizzeria_name
-FROM menu
-    JOIN pizzeria ON menu.pizzeria_id = pizzeria.id;
+SELECT pizza_name,
+    p.name AS pizzeria_name
+FROM menu m
+    JOIN pizzeria p ON m.pizzeria_id = p.id;

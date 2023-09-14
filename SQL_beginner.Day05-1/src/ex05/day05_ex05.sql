@@ -1,8 +1,8 @@
-SET ENABLE_SEQSCAN = OFF;
-CREATE INDEX idx_person_order_order_date ON person_order(person_id, menu_id)
+CREATE UNIQUE INDEX idx_person_order_order_date ON person_order(person_id, menu_id)
 WHERE order_date = '2022-01-01';
+SET ENABLE_SEQSCAN = OFF;
 EXPLAIN ANALYZE
-SELECT person_id,
-    menu_id
-FROM person_order
+SELECT po.person_id,
+    po.menu_id
+FROM person_order po
 WHERE order_date = '2022-01-01';
