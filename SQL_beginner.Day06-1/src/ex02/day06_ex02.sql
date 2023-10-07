@@ -1,15 +1,13 @@
-SELECT person.name,
-    menu.pizza_name,
-    menu.price,
-    menu.price - (menu.price / 100 * person_discounts.discount) AS discount_price,
-    pizzeria.name AS pizzeria_name
-FROM person_order
-    JOIN person ON person.id = person_order.person_id
-    JOIN menu ON menu.id = person_order.menu_id
-    JOIN pizzeria ON menu.pizzeria_id = pizzeria.id
-    JOIN person_discounts ON (
-        person_discounts.person_id = person_order.person_id
-        AND person_discounts.pizzeria_id = pizzeria.id
-    )
+SELECT p.name,
+    m.pizza_name,
+    m.price,
+    (m.price - (m.price * (pd.discount / 100)))::real AS discount_price,
+    pi.name AS pizzeria_name
+FROM person_order po
+    JOIN person p ON po.person_id = p.id
+    JOIN menu m ON m.id = po.menu_id
+    JOIN pizzeria pi ON pi.id = m.pizzeria_id
+    JOIN person_discounts pd ON pd.person_id = po.person_id
+    AND pd.pizzeria_id = pi.id
 ORDER BY 1,
     2;

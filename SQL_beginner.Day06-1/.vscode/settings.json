@@ -5,8 +5,8 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "model",
-            "database": "model",
+            "name": "k",
+            "database": "Pool",
             "username": "postgres"
         }
     ]
